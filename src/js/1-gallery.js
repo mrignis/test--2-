@@ -1,9 +1,7 @@
 // Описаний в документації
-// Описаний в документації
-import SimpleLightbox from 'simplelightbox';
+import SimpleLightbox from 'simplelightbox/dist/simple-lightbox.esm.js';
 // Додатковий імпорт стилів
 import 'simplelightbox/dist/simple-lightbox.min.css';
-
 
 document.addEventListener('DOMContentLoaded', () => {
   const images = [
