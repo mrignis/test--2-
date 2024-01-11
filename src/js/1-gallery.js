@@ -1,6 +1,9 @@
-// Import SimpleLightbox library and styles
-import SimpleLightbox from "simplelightbox";
-import "simplelightbox/dist/simple-lightbox.min.css";
+// Описаний в документації
+// Описаний в документації
+import SimpleLightbox from 'simplelightbox';
+// Додатковий імпорт стилів
+import 'simplelightbox/dist/simple-lightbox.min.css';
+
 
 document.addEventListener('DOMContentLoaded', () => {
   const images = [
@@ -69,15 +72,18 @@ document.addEventListener('DOMContentLoaded', () => {
     },
   ];
 
+  // Generate HTML for each gallery item
   const generateGalleryHTML = image => `
     <li class="gallery-item">
       <a class="gallery-link" href="${image.original}">
-        <img class="gallery-image" src="${image.preview}" alt="${image.description}">
+        <img class="gallery-image" src="${image.preview}" alt="${image.description}" />
       </a>
     </li>
   `;
 
+  // Get the gallery container
   const gallery = document.querySelector('.gallery');
+  // Populate the gallery with items
   gallery.innerHTML = images.map(image => generateGalleryHTML(image)).join('');
 
   // Initialize SimpleLightbox after adding gallery items to the DOM
