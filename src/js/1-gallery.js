@@ -1,6 +1,6 @@
 // Import SimpleLightbox library and styles
 import SimpleLightbox from "simplelightbox";
-import "/simplelightbox/dist/simple-lightbox.min.css";
+import "simplelightbox/dist/simple-lightbox.min.css";
 
 document.addEventListener('DOMContentLoaded', () => {
   const images = [
