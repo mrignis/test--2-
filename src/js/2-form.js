@@ -1,28 +1,32 @@
 const feedbackForm = document.querySelector('.feedback-form');
-const emailInput = feedbackForm.querySelector('input[name="email"]');
-const messageInput = feedbackForm.querySelector('textarea[name="message"]');
-const storageKey = 'feedback-form-state';
+const textarea = feedbackForm.elements.message;
+const email = feedbackForm.elements.email;
+const localStorageKey = 'feedback-form-state';
 
-// Завантаження збережених даних з локального сховища
-const savedData = JSON.parse(localStorage.getItem(storageKey)) || {};
-emailInput.value = savedData.email || '';
-messageInput.value = savedData.message || '';
+window.addEventListener('load', () => {
+  const storedState = JSON.parse(localStorage.getItem(localStorageKey)) || {};
 
-// Делегування подій для полів вводу
-feedbackForm.addEventListener('input', event => {
-  if (event.target.type === 'email' || event.target.type === 'textarea') {
-    savedData[event.target.name] = event.target.value;
-    localStorage.setItem(storageKey, JSON.stringify(savedData));
-  }
+  email.value = storedState.email || '';
+  textarea.value = storedState.message || '';
 });
 
-// Відправлення форми
-feedbackForm.addEventListener('submit', event => {
-  event.preventDefault();
-  console.log('Форма відправлена:', savedData);
+feedbackForm.addEventListener('input', () => {
+  const currentState = {
+    email: email.value,
+    message: textarea.value,
+  };
+  localStorage.setItem(localStorageKey, JSON.stringify(currentState));
+});
 
-  // Очищення полів форми та локального сховища
-  emailInput.value = '';
-  messageInput.value = '';
-  localStorage.removeItem(storageKey);
+feedbackForm.addEventListener('submit', evt => {
+  evt.preventDefault();
+
+  const submittedData = {
+    email: evt.target.elements.email.value.trim(),
+    message: evt.target.elements.message.value.trim(),
+  };
+  console.log(submittedData);
+
+  localStorage.removeItem(localStorageKey);
+  feedbackForm.reset();
 });
