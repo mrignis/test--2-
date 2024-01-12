@@ -21,9 +21,15 @@ feedbackForm.addEventListener('input', () => {
 feedbackForm.addEventListener('submit', evt => {
   evt.preventDefault();
 
+  // Перевірка обов'язкових полів
+  if (email.value.trim() === '' || textarea.value.trim() === '') {
+    alert('Будь ласка, заповніть обидва поля форми.');
+    return;
+  }
+
   const submittedData = {
-    email: evt.target.elements.email.value.trim(),
-    message: evt.target.elements.message.value.trim(),
+    email: email.value.trim(),
+    message: textarea.value.trim(),
   };
   console.log(submittedData);
 
